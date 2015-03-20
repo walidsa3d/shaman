@@ -1,3 +1,7 @@
 class Movie:
-	def __ini__(self):
-		pass
+	def __init__(self):
+		self.title=""
+		self.id=""
+		self.plot=""
+		self.year=""
+		

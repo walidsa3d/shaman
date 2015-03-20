@@ -1,6 +1,7 @@
 import inquirer
 from termcolor import colored
 from providers.imdb import imdby as Imdb
+import providers.elcinema as elcinema
 class MovieSearch:  
    
     def display_results(self, results):
@@ -29,11 +30,13 @@ class MovieSearch:
         query=raw_input("Search Movie: ")
         if(site=="imdb"):
             results=Imdb().search(query)
+        if(site=="elcinema"):
+            results=elcinema.search(query)
         movs=dict(enumerate(results))
         self.display_results(results)
         choose=raw_input("choose movie\t")
         print movs[int(choose)]
-        movie=Imdb().get_details(movs[int(choose)]['id'])
+        movie=elcinema.get_details(movs[int(choose)]['id'])
         self.display_movie(movie)
 
 if __name__ == '__main__':
