@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
 from movie import Movie
-
+from pyquery import PyQuery
 def search(query):
 	base_url= 'http://www.elcinema.com/'
 	search_url=base_url+ 'search/?search_for=%s&category=work' %query
@@ -21,5 +21,6 @@ def get_details(movie_id):
 	soup=bs(response)
 	movie.title=soup.find(attrs={'itemprop':'name'}).text
 	movie.plot=soup.find(attrs={'itemprop':'description'}).text
+	movie.year=soup.select("ul.unstyled > li")[2].find_all('a')[1].text
 	return movie
 
